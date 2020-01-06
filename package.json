@@ -1,0 +1,30 @@
+{
+  "name": "q-scraper",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0",
+    "puppeteer": "^1.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "description": "Uma ferramenta para realizar p web-scraping na plataforma Q-acadêmico",
+  "main": "node ./bin/www",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreL0pes/q-scraper.git"
+  },
+  "author": "Alexandre Lopes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexandreL0pes/q-scraper/issues"
+  },
+  "homepage": "https://github.com/AlexandreL0pes/q-scraper#readme"
+}
