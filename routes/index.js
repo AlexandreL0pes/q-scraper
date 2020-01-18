@@ -60,7 +60,18 @@ router.get("/login", async (req, res, __) => {
   
   const page = await browser.newPage();
     
-  await page.goto('https://academico.ifgoiano.edu.br/qacademico/index.asp?t=1001', {waitUntil: 'networkidle2'});
+
+  await page.setRequestInterception(true);
+  page.on('request', req => {
+        const whitelist = ['document', 'script', 'xhr', 'fetch'];
+    if (!whitelist.includes(req.resourceType())) {
+      return req.abort();
+    }
+    req.continue();
+  });
+
+
+  await page.goto('https://academico.ifgoiano.edu.br/qacademico/index.asp?t=1001', {waitUntil: 'networkidle0'});
   
 
   await page.focus('#txtLogin');
