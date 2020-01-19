@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const saveToPdf = require("../controller/safeToPdf");
 const getFinalGrades = require("../controller/getFinalGrades");
-const config = require('../config');
 
 const puppeteer = require("puppeteer");
 
