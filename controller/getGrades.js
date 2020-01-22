@@ -7,7 +7,9 @@ const getGrades = async (username, password) => {
 
     
     try {
-        await login(page, username, password);
+        let resultLogin = await login(page, username, password);
+        
+        if (resultLogin.status == 400) return resultLogin;
         
         await page.click('a[href="https://academico.ifgoiano.edu.br/qacademico/index.asp?t=2071"]');
         
@@ -49,6 +51,7 @@ const getGrades = async (username, password) => {
         return notaSemestral;
     } catch (error) {
         console.error(error);
+        return {status: 500, msg: 'Internal Server Error'};
     }
 
 
