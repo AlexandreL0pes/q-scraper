@@ -24,7 +24,7 @@ router.post("/boletim", async (req, res, __) => {
 
   let finalGrades = await grades.getFinalGrades(login, password);
 
-  res.status(finalGrades.status || 200).send({msg: parcialGrades.msg} || finalGrades);
+  res.status(finalGrades.status || 200).send(finalGrades.msg || finalGrades);
 });
 
 router.post("/diarios", async (req, res, __) => {
@@ -33,7 +33,7 @@ router.post("/diarios", async (req, res, __) => {
     
   let parcialGrades =  await grades.getGrades(login, password);
 
-  res.status(parcialGrades.status || 200).send({msg: parcialGrades.msg} || parcialGrades);
+  res.status(parcialGrades.status || 200).send(parcialGrades.msg || parcialGrades);
 
 });
 
