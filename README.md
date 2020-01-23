@@ -49,38 +49,38 @@ Matrícula | Obrigatório | Conjunto de números utilizado como identificação 
 Senha | Obrigatório | Coleção de caracteres de segurança para utilização do Q-Acadêmico. | 1SenhaT0talmenteS3gura
 
   ### 2. Resposta
-        ~~~json 
-        [
+~~~json 
+[
+    {
+        "nome": "Programação para Dispositivos Móveis",
+        "avaliacao": [
             {
-                "nome": "Programação para Dispositivos Móveis",
-                "avaliacao": [
-                    {
-                        "descricao": "Nota Semestral",
-                        "peso": "1",
-                        "notaMaxima": "10",
-                        "notaObtida": "10"
-                    }
-                ]
-            },
-            {
-                "nome": "Segurança e Auditoria da Informação",
-                "avaliacao": [
-                    {
-                        "descricao": "Atividades - ameaças",
-                        "peso": "1",
-                        "notaMaxima": "2.5",
-                        "notaObtida": "2.5"
-                    },
-                    {
-                        "descricao": "Tipos de ameaças",
-                        "peso": "1",
-                        "notaMaxima": "5",
-                        "notaObtida": "5"
-                    }
-                ]
+                "descricao": "Nota Semestral",
+                "peso": "1",
+                "notaMaxima": "10",
+                "notaObtida": "10"
             }
         ]
-        ~~~
+    },
+    {
+        "nome": "Segurança e Auditoria da Informação",
+        "avaliacao": [
+            {
+                "descricao": "Atividades - ameaças",
+                "peso": "1",
+                "notaMaxima": "2.5",
+                "notaObtida": "2.5"
+            },
+            {
+                "descricao": "Tipos de ameaças",
+                "peso": "1",
+                "notaMaxima": "5",
+                "notaObtida": "5"
+            }
+        ]
+    }
+]
+~~~
 
 ### __POST /boletim__
 
@@ -93,22 +93,22 @@ Senha     | Obrigatório  | Coleção de caracteres de segurança para utilizaç
 
 
   ### 2. Resposta
-        ~~~json 
-        [
-            {
-                "nome": "Teste de Software",
-                "nota": "10,0",
-                "status": "Aprovado",
-                "faltas": "4"
-            },
-            {
-                "nome": "Programação para Dispositivos Móveis",
-                "nota": "10,0",
-                "status": "Aprovado",
-                "faltas": "4"
-            }
-        ]
-        ~~~
+~~~json 
+[
+    {
+        "nome": "Teste de Software",
+        "nota": "10,0",
+        "status": "Aprovado",
+        "faltas": "4"
+    },
+    {
+        "nome": "Programação para Dispositivos Móveis",
+        "nota": "10,0",
+        "status": "Aprovado",
+        "faltas": "4"
+    }
+]
+~~~
 ## Licença
 
 [MIT](https://opensource.org/licenses/MIT)
