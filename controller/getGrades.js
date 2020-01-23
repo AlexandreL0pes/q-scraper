@@ -1,18 +1,23 @@
 const puppeteer = require("puppeteer");
 
-
+/**
+ *  Obtem as notas parciais 
+ * 
+ * @param {string} username 
+ * @param {string} password 
+ */
 const getGrades = async (username, password) => {
 
     const [browser, page] = await pageInit();
 
-    
+
     try {
         let resultLogin = await login(page, username, password);
-        
+
         if (resultLogin.status == 400) return resultLogin;
-        
+
         await page.click('a[href="https://academico.ifgoiano.edu.br/qacademico/index.asp?t=2071"]');
-        
+
         await page.waitForSelector('table[width="90%"][height="42"][cellpadding="2"]');
 
         const notaSemestral = await page.evaluate(() => {
@@ -51,11 +56,67 @@ const getGrades = async (username, password) => {
         return notaSemestral;
     } catch (error) {
         console.error(error);
-        return {status: 500, msg: 'Internal Server Error'};
+        return { status: 500, msg: 'Internal Server Error' };
     }
 
 
 };
+
+
+/**
+ * Obtem as notas finais 
+ * 
+ * @param {string} username 
+ * @param {string} password 
+ */
+const getFinalGrades = async (username, password) => {
+
+    const [browser, page] = await pageInit();
+
+    try {
+        
+        let resultLogin = await login(page, username, password);
+
+        if (resultLogin.status == 400) return resultLogin;
+
+
+        await page.click('a[href="/qacademico/alunos/boletim/index.asp"]');
+
+        const table = 'table [width="97%"] > tbody > tr:nth-child(n+3)';
+        await page.waitForSelector(table);
+
+        const disciplinas = await page.evaluate(() => {
+
+            let nomeLista = document.querySelectorAll('table [width="97%"] > tbody > tr:nth-child(n+3) > td:first-child');
+            let notaLista = document.querySelectorAll('table [width="97%"] > tbody > tr:nth-child(n+3) > td:nth-child(11n+10)');
+            let statusLista = document.querySelectorAll('table [width="97%"] > tbody > tr:nth-child(n+3) > td:last-of-type')
+            let faltasLista = document.querySelectorAll('table [width="97%"] > tbody > tr:nth-child(n+3) > td:nth-child(11n+4)')
+
+            let disciplinaDados = [];
+            for (let i = 0; i < nomeLista.length; i++) {
+                disciplinaDados[i] = {
+                    nome: nomeLista[i].innerText.split('<')[0].trim(),
+                    nota: notaLista[i].innerText.trim(),
+                    status: statusLista[i].innerText.trim(),
+                    faltas: faltasLista[i].innerText.trim()
+                };
+
+            }
+            return disciplinaDados;
+        });
+
+        await browser.close();
+        return disciplinas;
+
+    } catch (error) {
+        console.error(error);
+        return { status: 500, msg: 'Internal Server Error' };
+    }
+};
+
+/**
+ * Inicia o navegador e a página
+ */
 
 const pageInit = async () => {
     const browser = await puppeteer.launch({
@@ -77,6 +138,15 @@ const pageInit = async () => {
     return [browser, page];
 };
 
+/**
+ * Efetua o login no Q-Acadêmico 
+ */
+/**
+ * 
+ * @param {Page} page 
+ * @param {string} username 
+ * @param {string} password 
+ */
 const login = async (page, username, password) => {
     await page.goto('https://academico.ifgoiano.edu.br/qacademico/index.asp?t=1001', { waitUntil: 'networkidle0' });
 
@@ -97,4 +167,9 @@ const login = async (page, username, password) => {
     }
     return true;
 };
-module.exports = getGrades;
+
+/**
+ * Exporta as funções para serem utilizadas em outros arquivos do app
+ */
+
+module.exports = {getGrades, getFinalGrades};

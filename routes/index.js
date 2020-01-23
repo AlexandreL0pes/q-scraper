@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const saveToPdf = require("../controller/safeToPdf");
 const getFinalGrades = require("../controller/getFinalGrades");
-const getGrades = require("../controller/getGrades");
+const grades = require("../controller/getGrades");
 
 const puppeteer = require("puppeteer");
 
@@ -22,19 +22,18 @@ router.post("/boletim", async (req, res, __) => {
   let login = req.query.login || '';
   let password = req.query.password || '';
 
-  let finalGrades = await getFinalGrades(login, password);
+  let finalGrades = await grades.getFinalGrades(login, password);
 
-  res.json(finalGrades);
+  res.status(finalGrades.status || 200).send(finalGrades.msg || finalGrades);
 });
 
 router.post("/diarios", async (req, res, __) => {
   let login = req.query.login || '';
   let password = req.query.password || '';
     
-  let grades =  await getGrades(login, password);
+  let parcialGrades =  await grades.getGrades(login, password);
 
-  res.send(grades);
-  // res.json({login, password});
+  res.status(parcialGrades.status || 200).send(parcialGrades.msg || parcialGrades);
 
 });
 
