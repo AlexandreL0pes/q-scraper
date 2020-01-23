@@ -15,6 +15,82 @@ Q-scraper é um web-scraper para obter informações contidas na plataforma [Q-A
 ## Utilização
 O serviço ainda não está disponível! :/
 
+## Métodos 
+
+Endpoint       | Descrição
+-------------- | -----------------------------
+POST /diarios  | Retorna uma coleção com as notas obtidas em atividades/provas. 
+POST /boletim  | Retorna uma coleção com as notas finais obtidas ao final do semestre.
+
+ ### __POST /diarios__
+  1. ### Parâmetros
+        Nome | Obrigatório | Descrição | Exemplo 
+        ----- | ------------ |--------- | -------------
+        Matrícula | Obrigatório | Conjunto de números utilizado como identificação do estudante na instituição. | 2014103202030000
+        Senha | Obrigatório | Coleção de caracteres de segurança para utilização do Q-Acadêmico. | 1SenhaT0talmenteS3gura
+
+  2. ### Resposta
+        ~~~json 
+        [
+            {
+                "nome": "Programação para Dispositivos Móveis",
+                "avaliacao": [
+                    {
+                        "descricao": "Nota Semestral",
+                        "peso": "1",
+                        "notaMaxima": "10",
+                        "notaObtida": "10"
+                    }
+                ]
+            },
+            {
+                "nome": "Segurança e Auditoria da Informação",
+                "avaliacao": [
+                    {
+                        "descricao": "Atividades - ameaças",
+                        "peso": "1",
+                        "notaMaxima": "2.5",
+                        "notaObtida": "2.5"
+                    },
+                    {
+                        "descricao": "Tipos de ameaças",
+                        "peso": "1",
+                        "notaMaxima": "5",
+                        "notaObtida": "5"
+                    }
+                ]
+            }
+        ]
+        ~~~
+
+  ### __POST /boletim__
+
+   1.  **Parâmetros**
+
+        Nome      | Condição     | Descrição | Exemplo 
+        --------- | ------------ |---------- | ------
+        Matrícula | Obrigatório  | Conjunto de números utilizado como identificação do estudante na instituição. | 2014103202030000
+        Senha     | Obrigatório  | Coleção de caracteres de segurança para utilização do Q-Acadêmico. | 1SenhaT0talmenteS3gura
+
+
+  2. **Resposta**
+        ~~~json 
+        [
+            {
+                "nome": "Teste de Software",
+                "nota": "10,0",
+                "status": "Aprovado",
+                "faltas": "4"
+            },
+            {
+                "nome": "Programação para Dispositivos Móveis",
+                "nota": "10,0",
+                "status": "Aprovado",
+                "faltas": "4"
+            }
+        ]
+        ~~~
+
 ## Instalação/Execução
 
 **Configurando o Docker**
