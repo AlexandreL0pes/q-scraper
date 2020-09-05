@@ -1,4 +1,8 @@
-FROM node:10.15
+FROM node:lts
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
 
 RUN apt-get update && apt-get install -y wget --no-install-recommends \
   && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -15,18 +19,21 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_a
 RUN chmod +x /usr/local/bin/dumb-init
 
 
-WORKDIR /app
+WORKDIR /home/node/app
 
 COPY package*.json ./
+RUN npm install -g nodemon
 
 RUN npm install
-RUN npm install puppeteer
+# RUN npm install puppeteer
 
-WORKDIR /app/src
 
 COPY . .
+
+COPY --chown=node:node . .
+
 
 EXPOSE 3000
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD npm run start
+CMD npm run dev
