@@ -25,6 +25,15 @@ const browser = async config => {
 
   await page.setViewport(defaultViewport);
 
+  await page.setRequestInterception(true);
+  page.on('request', req => {
+    const whitelist = ['document', 'script', 'xhr', 'fetch'];
+    if (!whitelist.includes(req.resourceType())) {
+      return req.abort();
+    }
+    req.continue();
+  });
+
   return {
     page: page,
     close: async () => await browser.close(),
