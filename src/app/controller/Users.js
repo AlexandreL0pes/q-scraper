@@ -5,9 +5,9 @@ module.exports = {
   async show(req, res) {
     try {
       const {username, password} = req.body;
-      const {name, course} = await User.show(username, password);
+      const user_info = await User.show(username, password);
 
-      return res.status(200).json({name, course});
+      return res.status(200).json(user_info);
     } catch (e) {
       console.error(e);
       return res.status(500).json({message: 'Failed in get user info'});

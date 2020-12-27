@@ -154,7 +154,12 @@ Senha     | Obrigatório  | Coleção de caracteres de segurança para utilizaç
 ~~~json 
 {
   "name": "Alexandre Ferreira Lopes",
-  "course": "Sistemas de Informação"
+  "course": "Sistemas de Informação",
+  "general_coefficient": "9.21",
+  "compulsory_workload": "2440",
+  "completed_compulsory_workload": "2220",
+  "total_workload": "3120",
+  "completed_total_workload": "2340"
 }
 ~~~
 ## Licença
