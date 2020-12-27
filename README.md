@@ -21,26 +21,27 @@ O serviço ainda não está disponível! :/
 
 ### Construindo a imagem
 ```bash
-docker build -t q-scraper .
+$ docker-compose build
 ```
 ### Executando o container
 ```bash
-$ docker run -p 3000:3000 q-scraper
-```
-ou 
-
-```bash
-$ docker run -p 3000:3000 --mount type=bind,source=path-absoluto-diretorio/q-scraper,target=/app/src q-scraper
+$ docker-compose up -d 
 ```
 #### Após a execução dos comandos, o servidor estará disponível em [localhost:3000/](http://localhost:3000/)
 
-## Métodos 
+## ENDPOINTS 
 Endpoint       | Descrição
 -------------- | -----------------------------
-POST /diarios  | Retorna uma coleção com as notas obtidas em atividades/provas. 
-POST /boletim  | Retorna uma coleção com as notas finais obtidas ao final do semestre.
+POST /grades   | Retorna uma coleção com as notas obtidas em atividades/provas. 
+POST /scores    | Retorna uma coleção com as notas finais obtidas ao final do semestre.
+POST /learning_materials  | Retorna uma coleção com todos os materiais de aula disponibilizados pelas disciplinas.
+<br>
 
-### __POST /diarios__
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=q-scraper&uri=https%3A%2F%2Fgithub.com%2FAlexandreL0pes%2Fq-scraper%2Fblob%2Fv2%2Fdocs%2Fapi_requests.json)
+
+<br>
+
+### __POST /grades__
 
 ### 1. Parâmetros
 Nome | Obrigatório | Descrição | Exemplo 
@@ -82,7 +83,7 @@ Senha | Obrigatório | Coleção de caracteres de segurança para utilização d
 ]
 ~~~
 
-### __POST /boletim__
+### __POST /scores__
 
 ### 1. Parâmetros
 
@@ -107,6 +108,32 @@ Senha     | Obrigatório  | Coleção de caracteres de segurança para utilizaç
         "status": "Aprovado",
         "faltas": "4"
     }
+]
+~~~
+
+### __POST /learning_materials__
+
+### 1. Parâmetros
+
+Nome      | Condição     | Descrição | Exemplo 
+--------- | ------------ |---------- | ------
+Matrícula | Obrigatório  | Conjunto de números utilizado como identificação do estudante na instituição. | 2014103202030000
+Senha     | Obrigatório  | Coleção de caracteres de segurança para utilização do Q-Acadêmico. | 1SenhaT0talmenteS3gura
+
+
+  ### 2. Resposta
+~~~json 
+[
+    {
+    "subject": "Trabalho de Conclusão I",
+    "documents": [
+      {
+        "date": "17/02/2020",
+        "link": "https://academico.ifgoiano.edu.br/cefetweb-uploads/MATERIAIS_AULAS/341005-NORMAS-DE-TC-DOS-CURSOS-DE-GRADUAO-DO-IF-GOIANO-CERES---Aprovado-via-Ordem-de-Servio-66-2019-e-para-publicao.pdf",
+        "title": "Regulamento de TC"
+      }
+    ]
+  }
 ]
 ~~~
 ## Licença
