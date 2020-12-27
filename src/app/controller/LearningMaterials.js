@@ -1,4 +1,4 @@
-const Document = require('../models/Document');
+const Document = require('../models/LearningMaterial');
 
 module.exports = {
   async index(req, res) {

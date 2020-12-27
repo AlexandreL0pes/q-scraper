@@ -3,10 +3,10 @@ const router = express.Router();
 
 const Grades = require('../app/controller/Grades');
 const Scores = require('../app/controller/Scores');
-const Documents = require('../app/controller/Documents');
+const learning_materials = require('../app/controller/LearningMaterials');
 
 router.get('/grades', Grades.index);
 router.get('/score', Scores.index);
-router.get('/documents', Documents.index);
+router.get('/learning_materials', learning_materials.index);
 
 module.exports = router;

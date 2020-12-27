@@ -11,8 +11,14 @@ module.exports = {
 
       const page = await login(browser.page, username, password);
 
+      
       await page.click('body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > table:nth-child(6) > tbody:nth-child(1) > tr:nth-child(15) > td:nth-child(3) > a:nth-child(1)');
 
+      // TODO: List materials from another YEAR
+      // await page.waitForSelector('body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > table:nth-child(4)');
+      // await page.select('#ANO_PERIODO', '2020_1')
+      // await page.click('.botao')
+      
       await page.waitForSelector('body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > table:nth-child(4)');      
 
       await page.click(
