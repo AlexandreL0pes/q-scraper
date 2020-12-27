@@ -1,4 +1,4 @@
-# q-scraper
+# Q-scraper
 Uma ferramenta para realizar o web-scraping dentro da plataforma Q-acadêmico.
 
 ![](https://img.shields.io/github/issues/AlexandreL0pes/q-scraper)
@@ -8,9 +8,11 @@ Uma ferramenta para realizar o web-scraping dentro da plataforma Q-acadêmico.
 
 ## Descrição 
 Q-scraper é um web-scraper para obter informações contidas na plataforma [Q-Acadêmico](https://academico.ifgoiano.edu.br/), utilizando o protocolo HTTP, retornando um JSON com as informações solicitadas. O objetivo principal desse projeto é possibilitar a obtenção dos dados acadêmicos sem que seja necessário o acesso ao sistema em questão. 
- 
+
+![Q-Scraper - Demo ](https://raw.githubusercontent.com/AlexandreL0pes/q-scraper/master/docs/demo.gif)
 ## Pré-Requisitos
 - Docker 
+- Docker-compose
 
 ## Utilização
 O serviço ainda não está disponível! :/
@@ -37,7 +39,7 @@ POST /scores    | Retorna uma coleção com as notas finais obtidas ao final do 
 POST /learning_materials  | Retorna uma coleção com todos os materiais de aula disponibilizados pelas disciplinas.
 <br>
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=q-scraper&uri=https%3A%2F%2Fgithub.com%2FAlexandreL0pes%2Fq-scraper%2Fblob%2Fv2%2Fdocs%2Fapi_requests.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=q-scraper&uri=https%3A%2F%2Fgithub.com%2FAlexandreL0pes%2Fq-scraper%2Fblob%2Fmaster%2Fdocs%2Fapi_requests.json)
 
 <br>
 
