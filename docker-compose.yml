@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  app:
+    container_name: q-scraper
+    restart: always
+    build: .
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - 3333:3333
+    networks:
+      - app-tier
+  mongo:
+    container_name: q-scraper-mongodb
+    image: bitnami/mongodb:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - MONGODB_ROOT_PASSWORD=password
+    ports:
+      - 27017:27017
+    networks:
+      - app-tier
+networks:
+  app-tier:
+    driver: bridge
