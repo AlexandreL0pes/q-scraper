@@ -34,16 +34,17 @@ $ docker-compose up -d
 ## ENDPOINTS 
 Endpoint       | Descrição
 -------------- | -----------------------------
-POST /grades   | Retorna uma coleção com as notas obtidas em atividades/provas. 
-POST /scores    | Retorna uma coleção com as notas finais obtidas ao final do semestre.
-POST /learning_materials  | Retorna uma coleção com todos os materiais de aula disponibilizados pelas disciplinas.
+GET /grades   | Retorna uma coleção com as notas obtidas em atividades/provas. 
+GET /scores    | Retorna uma coleção com as notas finais obtidas ao final do semestre.
+GET /learning_materials  | Retorna uma coleção com todos os materiais de aula disponibilizados pelas disciplinas.
+GET /me | Retorna uma coleção de dados pessoais do usuário.
 <br>
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=q-scraper&uri=https%3A%2F%2Fgithub.com%2FAlexandreL0pes%2Fq-scraper%2Fblob%2Fmaster%2Fdocs%2Fapi_requests.json)
 
 <br>
 
-### __POST /grades__
+### __GET /grades__
 
 ### 1. Parâmetros
 Nome | Obrigatório | Descrição | Exemplo 
@@ -85,7 +86,7 @@ Senha | Obrigatório | Coleção de caracteres de segurança para utilização d
 ]
 ~~~
 
-### __POST /scores__
+### __GET /scores__
 
 ### 1. Parâmetros
 
@@ -113,7 +114,7 @@ Senha     | Obrigatório  | Coleção de caracteres de segurança para utilizaç
 ]
 ~~~
 
-### __POST /learning_materials__
+### __GET /learning_materials__
 
 ### 1. Parâmetros
 
@@ -137,6 +138,24 @@ Senha     | Obrigatório  | Coleção de caracteres de segurança para utilizaç
     ]
   }
 ]
+~~~
+
+### __GET /me__
+
+### 1. Parâmetros
+
+Nome      | Condição     | Descrição | Exemplo 
+--------- | ------------ |---------- | ------
+Matrícula | Obrigatório  | Conjunto de números utilizado como identificação do estudante na instituição. | 2014103202030000
+Senha     | Obrigatório  | Coleção de caracteres de segurança para utilização do Q-Acadêmico. | 1SenhaT0talmenteS3gura
+
+
+  ### 2. Resposta
+~~~json 
+{
+  "name": "Alexandre Ferreira Lopes",
+  "course": "Sistemas de Informação"
+}
 ~~~
 ## Licença
 
