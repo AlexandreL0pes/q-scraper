@@ -18,7 +18,7 @@ module.exports = {
       // await page.waitForSelector('body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > table:nth-child(4)');
       // await page.select('#ANO_PERIODO', '2020_1')
       // await page.click('.botao')
-      
+
       await page.waitForSelector('body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > table:nth-child(4)');      
 
       await page.click(
@@ -27,7 +27,6 @@ module.exports = {
 
       await page.waitForSelector('#layer_aguardar');
 
-      console.log("Ussi");
       const documents_info = await page.evaluate(() => {
         
         const documentTable = document.querySelectorAll(

@@ -7,7 +7,7 @@ module.exports = {
       const documents = await Document.findAll(username, password);
       return res.status(200).json(documents);
     } catch (error) {
-      console.error(e);
+      console.error(error);
       return res.status(500).json({ message: 'Failed in get documents' });
     }
   },
