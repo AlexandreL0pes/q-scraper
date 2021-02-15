@@ -1,5 +1,7 @@
 const login = async (page, username, password) => {
   try {
+    await page.setDefaultNavigationTimeout(0); 
+    
     await page.goto(
       'https://academico.ifgoiano.edu.br/qacademico/index.asp?t=1001',
       { waitUntil: 'networkidle0' },
