@@ -18,8 +18,9 @@ RUN chmod +x /usr/local/bin/dumb-init
 
 COPY package*.json /home/node/app/
 
-RUN yarn install
+RUN yarn install --save
 
+RUN yarn global add nodemon
 RUN yarn add puppeteer
 
 COPY . .
