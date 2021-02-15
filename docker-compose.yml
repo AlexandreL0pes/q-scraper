@@ -11,6 +11,20 @@ services:
       - 3333:3333
     networks:
       - app-tier
+  front: 
+    container_name: front
+    restart: always
+    build: ./front
+    command: yarn run dev
+    ports: 
+      - 4000:4000
+    volumes: 
+      - ./front:/front
+      - front_node_modules:/front/node_modules
+    depends_on: 
+      - app 
+    networks:
+      - app-tier
   mongo:
     container_name: q-scraper-mongodb
     image: bitnami/mongodb:latest
@@ -21,6 +35,8 @@ services:
       - 27017:27017
     networks:
       - app-tier
+volumes: 
+  front_node_modules:
 networks:
   app-tier:
     driver: bridge

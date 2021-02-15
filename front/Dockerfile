@@ -8,7 +8,7 @@ RUN mkdir /front
 WORKDIR /front
 
 COPY package*.json ./
-RUN yarn install --silent 
+RUN yarn install 
 
 COPY . .
 EXPOSE 4000
